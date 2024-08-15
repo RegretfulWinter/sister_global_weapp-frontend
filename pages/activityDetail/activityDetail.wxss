@@ -1,0 +1,28 @@
+/* pages/activityDetail/activityDetail.wxss */.activity-detail-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.activity-detail-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.activity-detail-meta text {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.activity-detail-description {
+  margin-top: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}

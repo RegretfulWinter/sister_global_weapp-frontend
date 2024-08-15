@@ -1,0 +1,15 @@
+<view class="weui-cells">
+  <!-- 单个活动项 -->
+  <block wx:for="{{activities}}" wx:key="id">
+    <view class="weui-cell weui-cell_access activity-item" bindtap="onViewDetail" data-id="{{item.id}}">
+      <view class="weui-cell__bd activity-info">
+        <view class="activity-title">{{item.title}}</view>
+        <view class="activity-location">📍 {{item.location}}</view>
+      </view>
+      <!-- 用 emoji 作为右箭头图标 -->
+      <view class="weui-cell__ft">
+        👉
+      </view>
+    </view>
+  </block>
+</view>

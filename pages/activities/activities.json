@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/activities/activities",
+    "pages/my/my"
+  ],
+  "window": {
+    "navigationBarTitleText": "民宿预订",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+      "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+
+  }
+}

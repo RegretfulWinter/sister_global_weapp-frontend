@@ -1,0 +1,80 @@
+<view class="profile-page">
+  <!-- 顶部个人信息 -->
+  <view class="profile-header weui-panel__hd">
+    <view class="back-button" bindtap="goBack">←</view>
+    <view class="profile-title">个人信息</view>
+  </view>
+
+  <!-- 个人信息区域 -->
+  <view class="profile-info weui-panel weui-panel_access">
+    <view class="weui-media-box weui-media-box_appmsg">
+      <view class="weui-media-box__hd">
+        <image src="{{userInfo.avatarUrl}}" mode="aspectFill" class="avatar-image" />
+      </view>
+      <view class="weui-media-box__bd">
+        <view class="profile-name">{{userInfo.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 语言 -->
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="cell-title">语言</view>
+        <view class="cell-content">{{userInfo.languages}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 地区 -->
+  <view class="weui-cells">
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">
+        <view class="cell-title">地区</view>
+        <view class="cell-content">{{userInfo.location}}</view>
+      </view>
+      <view class="weui-cell__ft"></view>
+    </view>
+  </view>
+
+  <!-- 兴趣与技能 -->
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="cell-title">兴趣与技能</view>
+        <view class="tags">
+          <block wx:for="{{userInfo.skills}}" wx:key="*this">
+            <view class="weui-btn weui-btn_mini weui-btn_plain-default">{{item}}</view>
+          </block>
+          <view class="weui-btn weui-btn_mini weui-btn_plain-default add-tag">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- MBTI与星座 -->
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="cell-title">MBTI与星座</view>
+        <view class="tags">
+          <view class="weui-btn weui-btn_mini weui-btn_plain-primary">{{userInfo.mbti}}</view>
+          <view class="weui-btn weui-btn_mini weui-btn_plain-primary">{{userInfo.zodiac}}</view>
+          <view class="weui-btn weui-btn_mini weui-btn_plain-default add-tag">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 自我介绍 -->
+  <view class="weui-cells">
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">
+        <view class="cell-title">自我介绍</view>
+        <view class="cell-content">{{userInfo.bio}}</view>
+        <view class="view-more weui-cell__ft">查看更多</view>
+      </view>
+    </view>
+  </view>
+</view>

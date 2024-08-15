@@ -1,0 +1,74 @@
+<view class="weui-navbar">
+  <block wx:for="{{tabs}}" wx:key="index">
+    <view class="weui-navbar__item {{currentTab == index ? 'weui-bar__item_on' : ''}}"
+          data-index="{{index}}"
+          bindtap="switchTab" style="width: 329rpx; height: 104rpx; display: block; box-sizing: border-box">
+      {{item}}
+    </view>
+  </block>
+</view>
+
+<view class="weui-tab__panel">
+  <!-- 借宿页面 -->
+  <view wx:if="{{currentTab == 0}}">
+    <view class="search-container">
+      <view class="search-row">
+        <!-- 区域选择 -->
+        <picker mode="selector" range="{{cityArray}}" bindchange="onCityChange">
+          <view class="select-box">
+            {{selectedCity || '选择区域'}}
+          </view>
+        </picker>
+        
+        <!-- 目的地输入 -->
+        <input class="destination-input" placeholder="目的地" />
+      </view>
+
+      <view class="search-row">
+        <!-- 入住日期选择 -->
+        <picker mode="date" start="{{today}}" bindchange="onStartDateChange">
+          <view class="date-box">
+            {{selectedStartDate || '入住退房日期（点击进行选择）'}}
+          </view>
+        </picker>
+        <text class="night-count">共0晚</text>
+      </view>
+
+      <!-- 搜索按钮 -->
+      <view class="search-button-container">
+        <button class="weui-btn weui-btn_primary search-button" bindtap="onSearchHost">
+          <image class="search-icon" src="/path/to/search-icon.png" />
+          搜索房源
+        </button>
+      </view>
+    </view>
+
+    <view class="weui-cells__title" style="width: 241rpx; height: 43rpx; display: block; box-sizing: border-box">搜索结果</view>
+    <view class="weui-cells">
+      <!-- 这里展示搜索结果 -->
+<view class="weui-cells">
+  <block wx:for="{{filteredHomestays}}" wx:key="id">
+    <view class="weui-cell weui-cell_access result-item">
+      <view class="weui-cell__bd">
+        <image class="homestay-image" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="homestay-info">
+          <view class="homestay-location">{{item.title}} - {{item.location}}</view>
+          <view class="homestay-dates">📅 {{item.availableDates[0]}} to {{item.availableDates[1]}}</view>
+        </view>
+      </view>
+      <view class="weui-cell__ft">
+        <button class="weui-btn weui-btn_mini weui-btn_primary" bindtap="contactHost" data-id="{{item.id}}">
+          联系房主
+        </button>
+      </view>
+    </view>
+  </block>
+</view>
+    </view>
+  </view>
+ 
+  <!-- 求宿页面 -->
+  <view wx:if="{{currentTab == 1}}">
+    <!-- 在这里你可以添加更多与求宿相关的内容 -->
+  </view>
+</view>
