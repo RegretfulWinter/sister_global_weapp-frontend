@@ -1,6 +1,6 @@
 /* pages/home/home.wxss */
 .container {
-  padding: 20px;
+  padding: 10px;
   background-color: #FFB578;
 
 }
@@ -73,39 +73,58 @@
   color: #333;
 }
 
+
 .upload-section {
   background-color: #FFB578; /* Orange background */
   position: relative;
   border-radius: 10px; /* Rounded corners */
   margin-bottom: 20px; /* Space below the section */
-  padding: 0px; /* Padding for the section */
+  padding: 20px; /* Adjusted padding for better spacing */
   display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: row; /* Align items horizontally */
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Space between text and button */
+  text-overflow: ellipsis;
 }
 
 .upload-text {
   font-size: 24px; /* Font size for the title */
-  left: -250px;
   font-weight: bold; /* Bold text */
   color: #333; /* Text color */
+  margin-left: -10px; /* Adjusted to better align text */
+  
 }
 
 .upload-button-container {
-  margin-top: auto; /* Push the button to the bottom */
+  position: relative;
+  margin-top: 0; /* Resetting the top margin */
   text-align: right; /* Align button to the right */
+  display: flex;
+  justify-content: center; /* Centering the button */
+  align-items: center; /* Vertical alignment */
 }
+
 
 .upload-button {
   background-color: #fff; /* Button background color */
   color: #ffcc00; /* Button text color */
   border: none; /* No border */
-  padding: 10px 20px; /* Padding for the button */
-  border-radius: 20px; /* Rounded button */
-  font-size: 18px; /* Font size for the button */
+  padding: 10px; /* Padding for the button */
+  border-radius: 50%; /* Circular button */
+  font-size: 24px; /* Font size for the button */
+  align-items: center;
+  width: 50px; /* Adjusted size */
+  height: 50px; /* Adjusted size */
 }
 
 .weui-search-bar {
-  margin: 20px 0;
+  margin-top: 20px; /* Add spacing between elements */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 25px; /* Rounded search bar */
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .listing {
@@ -113,6 +132,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
 }
 
 .listing-image {

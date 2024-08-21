@@ -2,14 +2,14 @@
   
   <view class="upload-section">
     <view class="upload-text">一键上传房源
-    <view class="upload-text">助力更多姐妹走向世界！</view>
+    <view class="upload-text"></view>助力更多姐妹走向世界
     </view>
-    <view class="upload-button-container">
-    <button class="weui-btn weui-btn_primary upload-button" bindtap="toggleSearch">→</button>
+    <view class="upload-button-container" style="position: relative; left: 254rpx; top: -125rpx">
+    <button class="upload-button" bindtap="toggleSearch" >→</button>
   </view>
   </view>
   
-  <view class="weui-search-bar" id="search-bar" bindtap="toggleSearch">
+  <view class="weui-search-bar" id="search-bar" bindtap="toggleSearch" style="position: relative; left: -1rpx; top: -102rpx; width: 599rpx; height: 104rpx; display: flex; box-sizing: border-box">
     <form class="weui-search-bar__form">
       <div class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box"></icon>
