@@ -1,74 +1,118 @@
-<view class="weui-navbar">
-  <block wx:for="{{tabs}}" wx:key="index">
-    <view class="weui-navbar__item {{currentTab == index ? 'weui-bar__item_on' : ''}}"
-          data-index="{{index}}"
-          bindtap="switchTab" style="width: 329rpx; height: 104rpx; display: block; box-sizing: border-box">
-      {{item}}
-    </view>
-  </block>
-</view>
-
-<view class="weui-tab__panel">
-  <!-- 借宿页面 -->
-  <view wx:if="{{currentTab == 0}}">
-    <view class="search-container">
-      <view class="search-row">
-        <!-- 区域选择 -->
-        <picker mode="selector" range="{{cityArray}}" bindchange="onCityChange">
-          <view class="select-box">
-            {{selectedCity || '选择区域'}}
-          </view>
-        </picker>
-        
-        <!-- 目的地输入 -->
-        <input class="destination-input" placeholder="目的地" />
+<view class="container">
+  <view class="header">
+    <text class="title">Home page</text>
+  </view>
+  
+  <view class="weui-panel weui-panel_access upload-section">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text">
+        <view class="weui-media-box__title">一键上传房源</view>
+        <view class="weui-media-box__desc">助力更多姐妹走向世界！</view>
+        <button class="weui-btn weui-btn_primary upload-button">→</button>
       </view>
-
-      <view class="search-row">
-        <!-- 入住日期选择 -->
-        <picker mode="date" start="{{today}}" bindchange="onStartDateChange">
-          <view class="date-box">
-            {{selectedStartDate || '入住退房日期（点击进行选择）'}}
-          </view>
-        </picker>
-        <text class="night-count">共0晚</text>
-      </view>
-
-      <!-- 搜索按钮 -->
-      <view class="search-button-container">
-        <button class="weui-btn weui-btn_primary search-button" bindtap="onSearchHost">
-          <image class="search-icon" src="/path/to/search-icon.png" />
-          搜索房源
-        </button>
-      </view>
-    </view>
-
-    <view class="weui-cells__title" style="width: 241rpx; height: 43rpx; display: block; box-sizing: border-box">搜索结果</view>
-    <view class="weui-cells">
-      <!-- 这里展示搜索结果 -->
-<view class="weui-cells">
-  <block wx:for="{{filteredHomestays}}" wx:key="id">
-    <view class="weui-cell weui-cell_access result-item">
-      <view class="weui-cell__bd">
-        <image class="homestay-image" src="{{item.imageUrl}}" mode="aspectFill" />
-        <view class="homestay-info">
-          <view class="homestay-location">{{item.title}} - {{item.location}}</view>
-          <view class="homestay-dates">📅 {{item.availableDates[0]}} to {{item.availableDates[1]}}</view>
-        </view>
-      </view>
-      <view class="weui-cell__ft">
-        <button class="weui-btn weui-btn_mini weui-btn_primary" bindtap="contactHost" data-id="{{item.id}}">
-          联系房主
-        </button>
-      </view>
-    </view>
-  </block>
-</view>
     </view>
   </view>
- 
-  <!-- 求宿页面 -->
-  <view wx:if="{{currentTab == 1}}">
-    <!-- 在这里你可以添加更多与求宿相关的内容 -->
+  
+  <view class="weui-search-bar" id="search-bar" bindtap="toggleSearch">
+    <form class="weui-search-bar__form">
+      <div class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box"></icon>
+        <input type="search" class="weui-search-bar__input" id="search-input" placeholder="Search" required/>
+        <icon class="weui-icon-clear"></icon>
+      </div>
+      <label class="weui-search-bar__label" id="search-text">
+        <icon class="weui-icon-search"></icon>
+        <span>Search</span>
+      </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="search-cancel">Cancel</a>
+  </view>
+  
+  <view class="weui-panel weui-panel_access listing">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd">
+          <image class="weui-media-box__thumb listing-image" src="/path/to/image.jpg" mode="aspectFill"/>
+        </view>
+        <view class="weui-media-box__bd">
+          <view class="weui-media-box__title">温馨书房, 静安区, 上海</view>
+          <view class="weui-media-box__desc listing-tags">
+            <view class="weui-label tag">摄影师</view>
+            <view class="weui-label tag">户外长途</view>
+            <view class="weui-label tag">ENFP</view>
+            <view class="weui-label tag">双鱼座</view>
+          </view>
+          <view class="weui-media-box__desc listing-description">"我是一个自由摄影师，虽然住在这里有一段时间了，但还是希望找到同可以一起探索这个城市的租住人！"</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Search Interface -->
+  <view wx:if="{{showSearch}}" class="search-container">
+    <view class="search-header">
+      <icon class="weui-icon-back" bindtap="toggleSearch"></icon>
+      <text class="search-title">搜索</text>
+    </view>
+    <view class="search-content">
+      <view class="search-section">
+        <text class="section-title">目的地?</text>
+        <input class="destination-input" placeholder="请输入你的目的地" />
+      </view>
+      <scroll-view scroll-x="true" class="horizontal-scroll">
+        <view class="scroll-item">
+          <view class="scroll-item-content">灵活地点</view>
+        </view>
+        <view class="scroll-item">
+          <view class="scroll-item-content">欧洲</view>
+        </view>
+        <view class="scroll-item">
+          <view class="scroll-item-content">亚洲</view>
+        </view>
+        <view class="scroll-item">
+          <view class="scroll-item-content">美洲</view>
+        </view>
+        <view class="scroll-item">
+          <view class="scroll-item-content">非洲</view>
+        </view>
+        <view class="scroll-item">
+          <view class="scroll-item-content">大洋洲</view>
+        </view>
+      </scroll-view>
+      <view class="search-section">
+        <text class="section-title">出行时间?</text>
+        <view class="calendar">
+          <text class="year">2024</text>
+          <view class="months">
+            <block wx:for="{{months}}" wx:key="index">
+              <view class="month">{{item}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="search-section">
+        <text class="section-title">姐妹个数</text>
+        <view class="sister-count">
+          <button class="count-button" bindtap="decreaseCount">-</button>
+          <text class="count">{{sisterCount}}</text>
+          <button class="count-button" bindtap="increaseCount">+</button>
+        </view>
+      </view>
+      <view class="search-section">
+        <text class="section-title">房间类型</text>
+        <view class="room-types">
+          <view class="room-type">共享卧室</view>
+          <view class="room-type">独立房间</view>
+          <view class="room-type">整套公寓</view>
+        </view>
+      </view>
+      <view class="search-section">
+        <text class="section-title">借宿类型</text>
+        <view class="stay-types">
+          <view class="stay-type">旅行借宿</view>
+          <view class="stay-type">打工换宿</view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

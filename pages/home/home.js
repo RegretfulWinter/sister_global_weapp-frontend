@@ -1,7 +1,5 @@
 Page({
   data: {
-    tabs: ["借宿", "求宿"],
-    currentTab: 0,
     cityArray: ["城市A", "城市B", "城市C"], // 可选城市列表
     selectedCity: '',
     selectedStartDate: '',
@@ -13,7 +11,10 @@ Page({
       { id: 2, title: "海边的舒适公寓", location: "城市B", availableDates: ["2024-08-22", "2024-08-23"] },
       { id: 3, title: "山中的独立木屋", location: "城市C", availableDates: ["2024-08-20", "2024-08-25"] }
     ],
-    filteredHomestays: []
+    filteredHomestays: [],
+    showSearch: false,
+    sisterCount: 2,
+    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
   },
 
   onLoad: function() {
@@ -22,11 +23,6 @@ Page({
     });
   },
 
-  switchTab: function(e) {
-    this.setData({
-      currentTab: e.currentTarget.dataset.index
-    });
-  },
 
   onCityChange: function(e) {
     this.setData({
@@ -103,5 +99,25 @@ Page({
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`
     });
+  },
+
+  toggleSearch: function() {
+    this.setData({
+      showSearch: !this.data.showSearch
+    });
+  },
+
+  increaseCount: function() {
+    this.setData({
+      sisterCount: this.data.sisterCount + 1
+    });
+  },
+
+  decreaseCount: function() {
+    if (this.data.sisterCount > 1) {
+      this.setData({
+        sisterCount: this.data.sisterCount - 1
+      });
+    }
   }
 });
