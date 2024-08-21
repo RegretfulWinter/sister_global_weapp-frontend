@@ -40,8 +40,9 @@
             </view>
             <text class="listing-description">{{item.description}}</text>
           </view>
-          <button class="wishlist-button" bindtap="addToWishlist" data-id="{{item.id}}">❤️</button>
+
         </view>
+        <button class="wishlist-button" bindtap="addToWishlist" data-id="{{item.id}}">❤️</button>
       </block>
     </view>
   </view>

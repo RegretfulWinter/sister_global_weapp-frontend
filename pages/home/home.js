@@ -18,9 +18,9 @@ Page({
     nightCount: 0,
     today: new Date().toISOString().split('T')[0], // 获取当前日期
     homestays: [
-      { id: 1, title: "城市A的温馨小屋", location: "城市A", country: "国家A", availableDates: ["2024-08-20", "2024-08-21"], continent: {name: "亚洲", value: "asia"}, maximumCapacity: 4, roomType: { name: "独立房间", value: "private" }, stayType: { name: "旅行借宿", value: "travel" } },
-      { id: 2, title: "海边的舒适公寓", location: "城市B", country: "国家B", availableDates: ["2024-08-22", "2024-08-23"], continent: {name: "欧洲", value: "europe"}, maximumCapacity: 2, roomType: { name: "整套公寓", value: "entire" }, stayType: { name: "打工换宿", value: "work" } },
-      { id: 3, title: "山中的独立木屋", location: "城市C", country: "国家C", availableDates: ["2024-08-20", "2024-08-25"], continent: {name: "美洲", value: "america"}, maximumCapacity: 6, roomType: { name: "共享卧室", value: "shared" }, stayType: { name: "旅行借宿", value: "travel" } }
+      { id: 1, title: "城市A的温馨小屋", location: "城市A", country: "国家A", availableDates: ["2024-08-20", "2024-08-21"], continent: {name: "亚洲", value: "asia"}, maximumCapacity: 4, roomType: { name: "独立房间", value: "private" }, stayType: { name: "旅行借宿", value: "travel" }, weChatId: "A1234567890" },
+      { id: 2, title: "海边的舒适公寓", location: "城市B", country: "国家B", availableDates: ["2024-08-22", "2024-08-23"], continent: {name: "欧洲", value: "europe"}, maximumCapacity: 2, roomType: { name: "整套公寓", value: "entire" }, stayType: { name: "打工换宿", value: "work" }, weChatId: "B1234567890" },
+      { id: 3, title: "山中的独立木屋", location: "城市C", country: "国家C", availableDates: ["2024-08-20", "2024-08-25"], continent: {name: "美洲", value: "america"}, maximumCapacity: 6, roomType: { name: "共享卧室", value: "shared" }, stayType: { name: "旅行借宿", value: "travel" }, weChatId: "C1234567890" }
     ],
     filteredHomestays: [],
     showSearch: false,
