@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/activities/activities",
+    "pages/homeDetail/homeDetail",
+    "pages/wishlist/wishlist",
     "pages/my/my"
   ],
   "window": {

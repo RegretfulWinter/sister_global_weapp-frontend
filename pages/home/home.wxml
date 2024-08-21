@@ -1,23 +1,19 @@
 <view class="container">
-  <view class="header">
-    <text class="title">Home page</text>
-  </view>
   
-  <view class="weui-panel weui-panel_access upload-section">
-    <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_text">
-        <view class="weui-media-box__title">一键上传房源</view>
-        <view class="weui-media-box__desc">助力更多姐妹走向世界！</view>
-        <button class="weui-btn weui-btn_primary upload-button">→</button>
-      </view>
+  <view class="upload-section">
+    <view class="upload-text">一键上传房源
+    <view class="upload-text">助力更多姐妹走向世界！</view>
     </view>
+    <view class="upload-button-container">
+    <button class="weui-btn weui-btn_primary upload-button" bindtap="toggleSearch">→</button>
+  </view>
   </view>
   
   <view class="weui-search-bar" id="search-bar" bindtap="toggleSearch">
     <form class="weui-search-bar__form">
       <div class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box"></icon>
-        <input type="search" class="weui-search-bar__input" id="search-input" placeholder="Search" required/>
+        <input type="search" class="weui-search-bar__input" id="search-input" placeholder="Search" required bindinput="onSearchInput"/>
         <icon class="weui-icon-clear"></icon>
       </div>
       <label class="weui-search-bar__label" id="search-text">
@@ -28,23 +24,25 @@
     <a href="javascript:" class="weui-search-bar__cancel-btn" id="search-cancel">Cancel</a>
   </view>
   
+  <!-- Existing listing section for all homestays -->
   <view class="weui-panel weui-panel_access listing">
     <view class="weui-panel__bd">
-      <view class="weui-media-box weui-media-box_appmsg">
-        <view class="weui-media-box__hd">
-          <image class="weui-media-box__thumb listing-image" src="/path/to/image.jpg" mode="aspectFill"/>
-        </view>
-        <view class="weui-media-box__bd">
-          <view class="weui-media-box__title">温馨书房, 静安区, 上海</view>
-          <view class="weui-media-box__desc listing-tags">
-            <view class="weui-label tag">摄影师</view>
-            <view class="weui-label tag">户外长途</view>
-            <view class="weui-label tag">ENFP</view>
-            <view class="weui-label tag">双鱼座</view>
+      <block wx:for="{{homestays}}" wx:key="id">
+        <view class="weui-media-box weui-media-box_appmsg" bindtap="onViewDetail" data-id="{{item.id}}">
+          <view class="listing-image-container">
+            <image class="listing-image" src="/path/to/dummy-image.jpg" mode="aspectFill"/>
           </view>
-          <view class="weui-media-box__desc listing-description">"我是一个自由摄影师，虽然住在这里有一段时间了，但还是希望找到同可以一起探索这个城市的租住人！"</view>
+          <view class="listing-info">
+            <text class="listing-title">{{item.title}}</text>
+            <text class="listing-location">{{item.location}}, {{item.country}}</text>
+            <view class="listing-tags">
+              <view class="weui-label tag">{{item.continent.name}}</view>
+            </view>
+            <text class="listing-description">{{item.description}}</text>
+          </view>
+          <button class="wishlist-button" bindtap="addToWishlist" data-id="{{item.id}}">❤️</button>
         </view>
-      </view>
+      </block>
     </view>
   </view>
 
@@ -55,62 +53,96 @@
       <text class="search-title">搜索</text>
     </view>
     <view class="search-content">
-      <view class="search-section">
-        <text class="section-title">目的地?</text>
-        <input class="destination-input" placeholder="请输入你的目的地" />
+  <text class="section-title">目的地?</text>
+  <view class="weui-cell weui-cell_select weui-cell_select-after">
+    <view class="weui-cell__bd">
+      <input type="text" class="weui-input" placeholder="输入城市" bindinput="onCityInput" />
+    </view>
+  </view>
+  <view wx:if="{{citySuggestions.length}}">
+    <view class="suggestions">
+      <block wx:for="{{citySuggestions}}" wx:key="*this">
+        <view class="suggestion-item" bindtap="selectCity" data-city="{{item}}">{{item}}</view>
+      </block>
+    </view>
       </view>
       <scroll-view scroll-x="true" class="horizontal-scroll">
-        <view class="scroll-item">
-          <view class="scroll-item-content">灵活地点</view>
-        </view>
-        <view class="scroll-item">
-          <view class="scroll-item-content">欧洲</view>
-        </view>
-        <view class="scroll-item">
-          <view class="scroll-item-content">亚洲</view>
-        </view>
-        <view class="scroll-item">
-          <view class="scroll-item-content">美洲</view>
-        </view>
-        <view class="scroll-item">
-          <view class="scroll-item-content">非洲</view>
-        </view>
-        <view class="scroll-item">
-          <view class="scroll-item-content">大洋洲</view>
-        </view>
+  <mp-cells>
+        <mp-cells title="选择大陆">
+          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="onContinentChange">
+            <mp-checkbox wx:for="{{continentArray}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          </mp-checkbox-group>
+        </mp-cells>
+  </mp-cells>
       </scroll-view>
       <view class="search-section">
         <text class="section-title">出行时间?</text>
-        <view class="calendar">
-          <text class="year">2024</text>
-          <view class="months">
-            <block wx:for="{{months}}" wx:key="index">
-              <view class="month">{{item}}</view>
-            </block>
-          </view>
+        <view class="year-selector">
+          <picker mode="selector" range="{{years}}" bindchange="onYearChange">
+            <view class="weui-cell weui-cell_select weui-cell_select-after">
+              <view class="weui-cell__hd">
+                <label class="weui-label">选择年份</label>
+              </view>
+              <view class="weui-cell__bd">
+                <view class="weui-input">{{selectedYear || '请选择年份'}}</view>
+              </view>
+            </view>
+          </picker>
+        </view>
+        <view class="month-selector">
+          <mp-cells title="选择月份">
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="onMonthChange">
+              <view class="month-grid">
+                <mp-checkbox wx:for="{{months}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+              </view>
+            </mp-checkbox-group>
+          </mp-cells>
         </view>
       </view>
       <view class="search-section">
         <text class="section-title">姐妹个数</text>
         <view class="sister-count">
-          <button class="count-button" bindtap="decreaseCount">-</button>
+          <button class="weui-btn weui-btn_mini weui-btn_default" bindtap="decreaseCount">-</button>
           <text class="count">{{sisterCount}}</text>
-          <button class="count-button" bindtap="increaseCount">+</button>
+          <button class="weui-btn weui-btn_mini weui-btn_default" bindtap="increaseCount">+</button>
         </view>
       </view>
       <view class="search-section">
         <text class="section-title">房间类型</text>
-        <view class="room-types">
-          <view class="room-type">共享卧室</view>
-          <view class="room-type">独立房间</view>
-          <view class="room-type">整套公寓</view>
-        </view>
+        <mp-cells title="选择房间类型">
+          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="onRoomTypeChange">
+            <mp-checkbox wx:for="{{roomTypes}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          </mp-checkbox-group>
+        </mp-cells>
       </view>
       <view class="search-section">
         <text class="section-title">借宿类型</text>
-        <view class="stay-types">
-          <view class="stay-type">旅行借宿</view>
-          <view class="stay-type">打工换宿</view>
+        <mp-cells title="选择借宿类型">
+          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="onStayTypeChange">
+            <mp-checkbox wx:for="{{stayTypes}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          </mp-checkbox-group>
+        </mp-cells>
+      </view>
+      <button class="weui-btn weui-btn_primary" bindtap="onSearchHost">搜索</button>
+    </view>
+    
+    <!-- New section to display filtered homestays -->
+    <view wx:if="{{searchInitiated}}" class="filtered-results">
+      <text class="section-title">搜索结果</text>
+      <view wx:for="{{filteredHomestays}}" wx:key="id">
+        <view class="weui-media-box weui-media-box_appmsg" bindtap="onViewDetail" data-id="{{item.id}}">
+          <view class="weui-media-box__hd">
+            <image class="weui-media-box__thumb listing-image" src="{{item.image}}" mode="aspectFill"/>
+          </view>
+          <view class="weui-media-box__bd">
+            <view class="weui-media-box__title">{{item.title}}</view>
+            <view class="weui-media-box__desc listing-tags">
+              <view class="weui-label tag">{{item.location}}</view>
+              <view class="weui-label tag">{{item.country}}</view>
+              <view class="weui-label tag">{{item.continent.name}}</view>
+            </view>
+            <view class="weui-media-box__desc listing-description">{{item.description}}</view>
+          </view>
         </view>
       </view>
     </view>

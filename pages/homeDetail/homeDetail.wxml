@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{homestay.title}}</text>
+  </view>
+  <view class="content">
+    <image class="homestay-image" src="/path/to/image.jpg" mode="aspectFill"/>
+    <view class="details">
+      <view class="detail-item">
+        <text class="label">Location:</text>
+        <text class="value">{{homestay.location}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">Country:</text>
+        <text class="value">{{homestay.country}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">Continent:</text>
+        <text class="value">{{homestay.continent.name}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">Available Dates:</text>
+        <view wx:for="{{homestay.availableDates}}" wx:key="*this">
+        <text class="value">{{item}}</text>
+    </view>
+      </view>
+      <view class="detail-item">
+        <text class="label">Maximum Capacity:</text>
+        <text class="value">{{homestay.maximumCapacity}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">Room Type:</text>
+        <text class="value">{{homestay.roomType.name}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">Stay Type:</text>
+        <text class="value">{{homestay.stayType.name}}</text>
+      </view>
+    </view>
+    <button class="contact-button" bindtap="showContactForm">Contact Host</button>
+  </view>
+
+  <view wx:if="{{showNotification}}" class="notification-bar">
+    <text class="notification-title">房主信息</text>
+    <text class="notification-wechat">微信: {{weChatId}}</text>
+    <button class="copy-button" bindtap="copyWeChatId">复制微信号</button>
+  </view>
+
+  <view wx:if="{{showModal}}" class="modal">
+    <view class="modal-content">
+      <text class="modal-title">申请信息</text>
+      <view class="form-item">
+        <text>请求日期</text>
+        <input type="text" placeholder="例如: 7月3日-5日" bindinput="onDateInput"/>
+      </view>
+      <view class="form-item">
+        <text>入住人数</text>
+        <button bindtap="decreaseCount">-</button>
+        <text>{{guestCount}}</text>
+        <button bindtap="increaseCount">+</button>
+      </view>
+      <view class="form-item">
+        <text>微信</text>
+        <input type="text" placeholder="请输入微信号" bindinput="onWeChatInput"/>
+      </view>
+      <view class="form-item">
+        <text>自我介绍</text>
+        <textarea placeholder="请介绍一下自己" bindinput="onIntroductionInput"></textarea>
+      </view>
+      <button class="submit-button" bindtap="submitRequest">发送申请</button>
+      <button class="close-button" bindtap="closeModal">关闭</button>
+    </view>
+  </view>
+</view>

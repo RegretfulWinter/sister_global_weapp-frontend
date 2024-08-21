@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="header">
+    <text class="title">我的收藏</text>
+  </view>
+  <view class="wishlist-section">
+    <block wx:for="{{wishlist}}" wx:key="id">
+      <view class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__hd">
+          <image class="weui-media-box__thumb listing-image" src="{{item.imageUrl}}" mode="aspectFill"/>
+        </view>
+        <view class="weui-media-box__bd">
+          <view class="weui-media-box__title" bindtap="onClick" data-id="{{item.id}}">{{item.title}}</view>
+          <view class="weui-media-box__desc listing-tags">
+            <view class="weui-label tag">{{item.location}}</view>
+            <view class="weui-label tag">{{item.country}}</view>
+            <view class="weui-label tag">{{item.continent.name}}</view>
+          </view>
+          <view class="weui-media-box__desc listing-description">{{item.description}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

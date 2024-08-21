@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/activityDetail/activityDetail",
-    "pages/activities/activities",
+    "pages/homeDetail/homeDetail",
+    "pages/wishlist/wishlist",
     "pages/my/my"
   ],
   "tabBar": {
@@ -16,8 +16,8 @@
         "text": "主页"
       },
       {
-        "pagePath": "pages/activities/activities",
-        "text": "活动"
+        "pagePath": "pages/wishlist/wishlist",
+        "text": "已收藏"
       },
       {
         "pagePath": "pages/my/my",
@@ -32,8 +32,7 @@
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {
-      "kbone": true,
-      "weui": true
+    "kbone": true,
+    "weui": true
   }
-  
 }

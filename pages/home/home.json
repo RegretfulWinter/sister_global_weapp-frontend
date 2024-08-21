@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/activities/activities",
+    "pages/wishlist/wishlist",
     "pages/my/my"
   ],
   "window": {
@@ -10,7 +10,10 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-      "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+      "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+      "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group",
+      "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
+      "mp-cells": "weui-miniprogram/cells/cells"
 
   }
 }
