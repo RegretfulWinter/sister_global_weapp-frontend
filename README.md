@@ -4,7 +4,7 @@ This repository stores the frontend for SisterGlobal's WeChat miniprogram.
 - Possible Future Transition to React Native + Taro (Pending Discussion): 优化性能 + 功能更完善
 - Progress Tracking (Jira): https://awfultangerine-1723447707628.atlassian.net/jira/software/projects/KAN/boards/1
 - Documentation (Confluence): https://awfultangerine-1723447707628.atlassian.net/wiki/x/YAAC
-
+-----------
 ### Part 2. Features Progress by Tab
 #### Tab 1: 换宿
 ##### Feature 1: 主页所有房源展示 (Scope/Difficulty：Middle)
@@ -28,7 +28,6 @@ This repository stores the frontend for SisterGlobal's WeChat miniprogram.
   - TBD：
     - Search Results和搜索页分离；
     - General CSS Layout Adjustment
-  
 
 #### Tab 2: 心愿单
 ##### Feature 4: 心愿单 (Scope/Difficulty：Middle)
@@ -42,7 +41,7 @@ This repository stores the frontend for SisterGlobal's WeChat miniprogram.
 ##### Feature 5: 申请管理 (Scope/Difficulty：Middle)
 ##### Feature 6: 个人信息管理 (Scope/Difficulty：Middle)
 ##### Feature 7: Contact Us / 联系开发者 (Scope/Difficulty：Easy)
-
+-----------------
 
 ### Part 3. Connection with Backend
 #### TODO1: CRUD Refinement
