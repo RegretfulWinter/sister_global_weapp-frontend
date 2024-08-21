@@ -1,3 +1,14 @@
 {
-  "usingComponents": {}
+  "pages": [
+    "pages/home/home",
+    "pages/activities/activities",
+    "pages/my/my"
+  ],
+  "usingComponents": {
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group",
+    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog",
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+  }
 }

@@ -2,22 +2,11 @@ Page({
   data: {
     tabs: ["借宿", "求宿"],
     currentTab: 0,
-    searchCity: '',
-    searchDate: '',
-    homestays: [
-      { id: 1, title: "城市A的温馨小屋", location: "城市A", availableDates: ["2024-08-20", "2024-08-21"] },
-      { id: 2, title: "海边的舒适公寓", location: "城市B", availableDates: ["2024-08-22", "2024-08-23"] },
-      { id: 3, title: "山中的独立木屋", location: "城市C", availableDates: ["2024-08-20", "2024-08-25"] }
-    ],
-    filteredHomestays: []  // 用于存储过滤后的结果
-  },
-
-  Page({
-  data: {
     cityArray: ["城市A", "城市B", "城市C"], // 可选城市列表
     selectedCity: '',
     selectedStartDate: '',
     selectedEndDate: '',
+    nightCount: 0,
     today: new Date().toISOString().split('T')[0], // 获取当前日期
     homestays: [
       { id: 1, title: "城市A的温馨小屋", location: "城市A", availableDates: ["2024-08-20", "2024-08-21"] },
@@ -33,6 +22,12 @@ Page({
     });
   },
 
+  switchTab: function(e) {
+    this.setData({
+      currentTab: e.currentTarget.dataset.index
+    });
+  },
+
   onCityChange: function(e) {
     this.setData({
       selectedCity: this.data.cityArray[e.detail.value]
@@ -43,12 +38,30 @@ Page({
     this.setData({
       selectedStartDate: e.detail.value
     });
+    this.updateNightCount();
   },
 
   onEndDateChange: function(e) {
     this.setData({
       selectedEndDate: e.detail.value
     });
+    this.updateNightCount();
+  },
+
+  updateNightCount: function() {
+    const startDate = new Date(this.data.selectedStartDate);
+    const endDate = new Date(this.data.selectedEndDate);
+    const nightCount = (endDate - startDate) / (1000 * 60 * 60 * 24);
+    
+    if (nightCount > 0) {
+      this.setData({
+        nightCount: nightCount
+      });
+    } else {
+      this.setData({
+        nightCount: 0
+      });
+    }
   },
 
   onSearchHost: function() {

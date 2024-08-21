@@ -1,16 +1,21 @@
 .profile-page {
-  background-color: #F7F7F7;
-  padding: 10px;
+  background-color: #FDE0C9;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .profile-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
   padding: 10px 0;
 }
 
 .back-button {
+  position: absolute;
+  left: 10px;
   font-size: 18px;
   color: #333;
   cursor: pointer;
@@ -21,10 +26,14 @@
   font-weight: bold;
   color: #333;
   text-align: center;
-  flex: 1;
 }
 
 .profile-info {
+  background-color: #FAF3EC;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -33,18 +42,26 @@
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
+  margin-right: 15px;
 }
 
 .profile-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: #29374D;
+}
+
+.weui-cell {
+  background-color: #FAF3EC;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 15px;
 }
 
 .cell-title {
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: #29374D;
   margin-bottom: 8px;
 }
 
@@ -58,7 +75,15 @@
   flex-wrap: wrap;
 }
 
+.tag {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: #29374D;
+}
+
 .add-tag {
+  border: 2px dashed #666;
+  color: #666;
   margin-left: 10px;
 }
 
@@ -66,4 +91,96 @@
   color: #1AAD19;
   font-size: 14px;
   margin-top: 10px;
+  text-align: right;
+}
+
+.modal-content {
+  width: 80%;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+.cancel-btn {
+  color: #888;
+  font-size: 16px;
+}
+
+.confirm-btn {
+  color: #1AAD19;
+  font-size: 16px;
+}
+
+.modal-body {
+  max-height: 300px;  /* 根据需要调整高度 */
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.language-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 80%;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+.cancel-btn {
+  color: #888;
+  font-size: 16px;
+}
+
+.confirm-btn {
+  color: #1AAD19;
+  font-size: 16px;
+}
+
+.modal-body {
+  max-height: 300px;
+  padding: 10px;
+}
+
+
+.checkbox-label {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.cell-content {
+  font-size: 16px;
+  color: #333;
 }
