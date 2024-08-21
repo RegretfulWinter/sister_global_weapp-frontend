@@ -223,7 +223,7 @@
 }
 
 .horizontal-scroll {
-  enable-flex: true
+  enable-flex: true;
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
