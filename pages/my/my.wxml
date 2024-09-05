@@ -1,89 +1,145 @@
 <view class="profile-page">
   <!-- 顶部个人信息 -->
   <view class="profile-header">
-    <view class="back-button" bindtap="goBack">←</view>
+    <view class="back-button" bindtap="goBack"
+      >←</view
+    >
     <view class="profile-title">个人信息</view>
   </view>
 
   <!-- 个人信息区域 -->
   <view class="profile-info">
-    <image src="{{userInfo.avatarUrl}}" mode="aspectFill" class="avatar-image" />
-    <text class="profile-name">{{userInfo.name}}</text>
+    <image
+      src="{{ userInfo.avatarUrl }}"
+      mode="aspectFill"
+      class="avatar-image"
+    />
+    <text class="profile-name">{{
+      userInfo.preferredName
+    }}</text>
   </view>
   <view class="profile-page">
-  <!-- 语言选择栏 -->
-  <view class="weui-cell weui-cell_access" bindtap="showLanguageModal">
-    <view class="weui-cell__bd">
-      <view class="cell-title">语言</view>
-      <view class="cell-content">{{ userInfo.languages }}</view>
+    <!-- 语言选择栏 -->
+    <view
+      class="weui-cell weui-cell_access"
+      bindtap="showLanguageModal"
+    >
+      <view class="weui-cell__bd">
+        <view class="cell-title">语言</view>
+        <view class="cell-content">{{
+          userInfo.languages
+        }}</view>
+      </view>
+      <view class="weui-cell__ft"></view>
     </view>
-    <view class="weui-cell__ft"></view>
-    
-  </view>
 
-  <!-- 地区 -->
-  <view class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd">
-      <view class="cell-title">地区</view>
-      <view class="cell-content">{{userInfo.location}}</view>
+    <!-- 地区 -->
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">
+        <view class="cell-title">地区</view>
+        <view class="cell-content">{{
+          userInfo.location
+        }}</view>
+      </view>
+      <view class="weui-cell__ft"></view>
     </view>
-    <view class="weui-cell__ft"></view>
-  </view>
 
-  <!-- 兴趣与技能 -->
-  <view class="weui-cells">
+    <!-- 兴趣与技能 -->
     <view class="weui-cell">
       <view class="weui-cell__bd">
         <view class="cell-title">兴趣与技能</view>
         <view class="tags">
-          <block wx:for="{{userInfo.skills}}" wx:key="*this">
-            <view class="weui-btn weui-btn_mini weui-btn_plain-default tag">{{item}}</view>
+          <block
+            wx:for="{{ userInfo.interests }}"
+            wx:key="*this"
+          >
+            <view
+              class="weui-btn weui-btn_mini weui-btn_plain-default tag"
+              >{{ item }}</view
+            >
           </block>
-          <view class="weui-btn weui-btn_mini weui-btn_plain-default add-tag">+</view>
+          <view
+            class="weui-btn weui-btn_mini weui-btn_plain-default add-tag"
+            bind:tap="showInterestModal"
+            >+</view
+          >
         </view>
       </view>
     </view>
-  </view>
 
-  <!-- MBTI与星座 -->
-  <view class="weui-cells">
-    <view class="weui-cell">
+    <!-- MBTI与星座 -->
+    <view class="weui-cell weui-cell_access">
       <view class="weui-cell__bd">
         <view class="cell-title">MBTI与星座</view>
         <view class="tags">
-          <view class="weui-btn weui-btn_mini weui-btn_plain-primary tag">{{userInfo.mbti}}</view>
-          <view class="weui-btn weui-btn_mini weui-btn_plain-primary tag">{{userInfo.zodiac}}</view>
-          <view class="weui-btn weui-btn_mini weui-btn_plain-default add-tag">+</view>
+          <view
+            class="weui-btn weui-btn_mini weui-btn_plain-primary tag"
+            >{{ userInfo.mbti }}</view
+          >
+          <view
+            class="weui-btn weui-btn_mini weui-btn_plain-primary tag"
+            >{{ userInfo.zodiac }}</view
+          >
+          <view
+          class="weui-btn weui-btn_mini weui-btn_plain-default add-tag"
+          bind:tap="showPicker"
+          >+</view
+        >
         </view>
       </view>
     </view>
-  </view>
 
-  <!-- 自我介绍 -->
-  <view class="weui-cell weui-cell_access">
-    <view class="weui-cell__bd">
-      <view class="cell-title">自我介绍</view>
-      <view class="cell-content">{{userInfo.bio}}</view>
-      <view class="view-more">查看更多</view>
-    </view>
-    <view class="weui-cell__ft"></view>
-  </view>
-
-   <!-- 语言修改模态框 -->
-   <view wx:if="{{showLanguageModal}}" class="language-modal">
-    <view class="modal-content">
-      <view class="modal-header">
-        <text class="cancel-btn" bindtap="hideLanguageModal">取消</text>
-        <text class="confirm-btn" bindtap="confirmLanguageChange">确认</text>
+    <!-- 自我介绍 -->
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">
+        <view class="cell-title">自我介绍</view>
+        <view class="cell-content">{{
+          userInfo.bio
+        }}</view>
+        <view class="view-more">查看更多</view>
       </view>
-      <scroll-view class="modal-body" scroll-y="true">
-        <mp-cells title="请选择语言">
-          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
-            <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
-          </mp-checkbox-group>
-        </mp-cells>
-      </scroll-view>
+      <view class="weui-cell__ft"></view>
     </view>
-  </view>
+
+    <!-- lanaguages modal -->
+    <multi-checks-modal
+      show="{{ showLanguageModal }}"
+      title="请选择你会说的或者你想练习的语言"
+      checkboxItems="{{ languagesOptions }}"
+      bind:confirm="confirmLanguageChange"
+      bind:cancel="hideLanguageModal"
+      bind:change="languageChecboxChange"
+    ></multi-checks-modal>
+
+    <!-- interests modal -->
+    <multi-checks-modal
+      show="{{ showInterestModal }}"
+      title="展示你的技能和兴趣爱好"
+      checkboxItems="{{ interestsOptions }}"
+      bind:confirm="confirmInterestChange"
+      bind:cancel="hideInterestModal"
+      bind:change="interestChecboxChange"
+    >
+      <view>
+        <view class="weui-cell weui-cell_input">
+          <input
+            class="weui-input"
+            name="input"
+            placeholder="点击输入自定义标签"
+            bindinput="bindInterestInput"
+            maxlength="10"
+            value="{{customizedInterest}}"
+          />
+          <button
+            type="primary"
+            bindtap="addInterestTag"
+          >
+            +
+          </button>
+        </view>
+      </view>
+    </multi-checks-modal>
+    <!-- mbti and zodiac piicker -->
+    <mbti-zodiac-picker show="{{ showPicker }}" bind:cancel="hidePicker" bind:confirm="confirmPersonalityChange"></mbti-zodiac-picker>
   </view>
 </view>

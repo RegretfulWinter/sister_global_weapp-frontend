@@ -1,5 +1,5 @@
 .profile-page {
-  background-color: #FDE0C9;
+  background-color: #fde0c9;
   padding: 20px;
   min-height: 100vh;
   box-sizing: border-box;
@@ -29,7 +29,7 @@
 }
 
 .profile-info {
-  background-color: #FAF3EC;
+  background-color: #faf3ec;
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -48,20 +48,24 @@
 .profile-name {
   font-size: 20px;
   font-weight: bold;
-  color: #29374D;
+  color: #29374d;
 }
 
 .weui-cell {
-  background-color: #FAF3EC;
+  background-color: #faf3ec;
   border-radius: 12px;
   margin-bottom: 15px;
   padding: 15px;
 }
 
+.weui-cell::before {
+  content: none; /* Disables the ::before pseudo-element */
+}
+
 .cell-title {
   font-size: 16px;
   font-weight: bold;
-  color: #29374D;
+  color: #29374d;
   margin-bottom: 8px;
 }
 
@@ -71,14 +75,13 @@
 }
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .tag {
   margin-right: 8px;
   margin-bottom: 8px;
-  color: #29374D;
+  color: #29374d;
+  background-color: #ffb578;
 }
 
 .add-tag {
@@ -88,96 +91,15 @@
 }
 
 .view-more {
-  color: #1AAD19;
+  color: #1aad19;
   font-size: 14px;
   margin-top: 10px;
   text-align: right;
 }
 
-.modal-content {
-  width: 80%;
-  background-color: #FFF;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #eee;
-}
-
 .cancel-btn {
   color: #888;
   font-size: 16px;
-}
-
-.confirm-btn {
-  color: #1AAD19;
-  font-size: 16px;
-}
-
-.modal-body {
-  max-height: 300px;  /* 根据需要调整高度 */
-  padding: 10px;
-  overflow-y: auto;
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.language-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  width: 80%;
-  background-color: #FFF;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #eee;
-}
-
-.cancel-btn {
-  color: #888;
-  font-size: 16px;
-}
-
-.confirm-btn {
-  color: #1AAD19;
-  font-size: 16px;
-}
-
-.modal-body {
-  max-height: 300px;
-  padding: 10px;
-}
-
-
-.checkbox-label {
-  margin-left: 10px;
-  font-size: 16px;
-  color: #333;
 }
 
 .cell-content {
