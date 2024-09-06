@@ -1,0 +1,28 @@
+<view wx:if="{{showPicker}}" class="personality-modal">
+  <view class="personality-back {{showPicker? 'active' : ''}}"></view>
+  <view class="personality-content {{showPicker? 'active' : ''}}">
+    <view class="personality-modal-header">
+      <view class="personality-list-title">MBTI & 星座</view>
+      <view class="personality-btns">
+        <text bindtap="handleClose">取消</text>
+        <text bindtap="handleConfirm">确定</text>
+      </view>
+    </view>
+    <view class="personality-list-subtitle">
+      <view>
+        MBTI: {{selectedMbti}}
+      </view>
+      <view>
+        星座: {{selectedZodiac}}
+      </view>
+    </view>
+    <picker-view bindchange="handlePersonalityChange" class="my-picker">
+      <picker-view-column>
+        <view wx:for="{{mbtiList}}" wx:key="mbtiList" style="text-align: center;">{{item.key}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{zodiacList}}" wx:key="zodiacList" style="text-align: center;">{{item.key}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

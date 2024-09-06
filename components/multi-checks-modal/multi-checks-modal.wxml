@@ -1,0 +1,16 @@
+<view wx:if="{{showModal}}" class="modal">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="cancel-btn" bindtap="onCancel">取消</text>
+        <text class="confirm-btn" bindtap="onConfirm">确认</text>
+      </view>
+      <scroll-view class="modal-body" scroll-y="true" >
+        <mp-cells title="{{title}}">
+          <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="onCheckedChange">
+            <mp-checkbox wx:for="{{items}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          </mp-checkbox-group>
+          <slot></slot>
+        </mp-cells>
+      </scroll-view>
+    </view>
+</view>

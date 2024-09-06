@@ -1,0 +1,60 @@
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .modal-body {
+    max-height: 300px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .modal-content {
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .cancel-btn {
+    color: #888;
+    font-size: 16px;
+  }
+  
+  .confirm-btn {
+    color: #1AAD19;
+    font-size: 16px;
+  }
+
+  .checkbox-label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+  }
